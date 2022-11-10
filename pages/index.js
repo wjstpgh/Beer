@@ -1,10 +1,11 @@
-import {Link} from "next/link";
+import Navbar from "../components/navbar";
 
 const Homepage = () => {
   return (
-    <div>
-      
-    </div>
+    <>
+      <Navbar />
+      지갑 연동 페이지
+    </>
   );
 }
 
