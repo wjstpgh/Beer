@@ -5,11 +5,13 @@ import { useInView } from 'react-intersection-observer'
 import { useEffect, Fragment, useState } from "react";
 
 const ListPage = () => {
-  const { ref, inView } = useInView({ threshold: 0.3 });
+  // const { ref, inView } = useInView({ threshold: 0.3 });
   const [abv_gt, setGt] = useState(0);
   const [abv_lt, setLt] = useState(55);
+  const [inView,setInView]=useState(true);
 
   useEffect(() => {
+    console.log(hasNextPage);
     if (inView && hasNextPage) {
       fetchNextPage();
       console.log('hit')
@@ -30,19 +32,27 @@ const ListPage = () => {
       console.log(pageParam);
       return await getBeer(pageParam);
     },
-    (last, all) => {
-      const max = last.tatal_count / 30;
-      const next = all.length + 1;
-      return next <= max ? next : undefined;
+    {
+      getNextPageParam: (last, all) => {
+        const max = last.total_count / 30;
+        const next = all.length + 1;
+        return last;
+      }
     }
   );
 
-  if (data !== undefined) {
-    data.pages.map((page, i) => {
-      page.map((beer) => {
-        // console.log(beer);
-      })
-    })
+  // if (data !== undefined) {
+  //   data.pages.map((page, i) => {
+  //     page.map((beer) => {
+  //       // console.log(beer);
+  //     })
+  //   })
+  // }
+
+  const cli=()=>{
+    // inView ? setInView(false) : setInView(true)
+    // console.log(inView)
+    fetchNextPage();
   }
 
   return (
@@ -58,7 +68,7 @@ const ListPage = () => {
             </tr>
           </thead>
           <tbody>
-            {status === 'loading' ? (
+            {/* {status === 'loading' ? (
               <tr><td>loading...</td></tr>
             ) : (
               <>
@@ -70,11 +80,11 @@ const ListPage = () => {
                   </Fragment>
                 ))}
               </>
-            )}
+            )} */}
           </tbody>
         </table>
       </div>
-      <div ref={ref}></div>
+      <div ><button onClick={cli}>viewchg</button></div>
     </div>
   );
 }
