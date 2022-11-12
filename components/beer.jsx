@@ -2,8 +2,9 @@ import { useState } from 'react';
 import Modal from 'react-modal';
 import BeerDetail from './beer-detail';
 
-const Beer = () => {
+const Beer = ({ beer }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const { name, abv } = beer
 
   const modalOpenHandler = () => {
     setModalIsOpen(true);
@@ -16,10 +17,10 @@ const Beer = () => {
           className="col-span-4 text-orange-600 hover:text-orange-400 hover:underline decoration-current decoration-wavy lowercase hover:capitalize font-serif italic cursor-pointer"
           onClick={modalOpenHandler}
         >
-          name
+          {name}
         </td>
         <td className="col-span-1 text-center">
-          abv
+          {abv}
         </td>
         <td
           className="col-span-1 hover:scale-125 text-center cursor-pointer"
@@ -34,7 +35,7 @@ const Beer = () => {
         onRequestClose={() => { setModalIsOpen(false) }}
         ariaHideApp={false}
       >
-        <BeerDetail />
+        <BeerDetail key={beer.id} beer={beer} />
       </Modal>
     </>
   );
