@@ -12,7 +12,6 @@ const ListPage = () => {
   useEffect(() => {
     if (inView && hasNextPage) {
       fetchNextPage();
-      console.log('hit')
     }
   }, [inView]);
 
@@ -24,26 +23,19 @@ const ListPage = () => {
     return data;
   }
 
-  const { data, status, hasNextPage, fetchNextPage, isFetchingNextPage, isFetching } = useInfiniteQuery(
+  const { data, status, hasNextPage, fetchNextPage } = useInfiniteQuery(
     ["beer"],
     async ({ pageParam = 1 }) => {
-      console.log(pageParam);
       return await getBeer(pageParam);
     },
-    (last, all) => {
-      const max = last.tatal_count / 30;
-      const next = all.length + 1;
-      return next <= max ? next : undefined;
+    {
+      getNextPageParam: (last, all) => {
+        const max = last.length / 30;
+        const next = all.length + 1;
+        return max ? next : undefined;
+      }
     }
   );
-
-  if (data !== undefined) {
-    data.pages.map((page, i) => {
-      page.map((beer) => {
-        // console.log(beer);
-      })
-    })
-  }
 
   return (
     <div>
