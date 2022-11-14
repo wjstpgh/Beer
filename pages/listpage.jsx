@@ -5,16 +5,13 @@ import { useInView } from 'react-intersection-observer'
 import { useEffect, Fragment, useState } from "react";
 
 const ListPage = () => {
-  // const { ref, inView } = useInView({ threshold: 0.3 });
+  const { ref, inView } = useInView({ threshold: 0.3 });
   const [abv_gt, setGt] = useState(0);
   const [abv_lt, setLt] = useState(55);
-  const [inView,setInView]=useState(true);
 
   useEffect(() => {
-    console.log(hasNextPage);
     if (inView && hasNextPage) {
       fetchNextPage();
-      console.log('hit')
     }
   }, [inView]);
 
@@ -26,34 +23,19 @@ const ListPage = () => {
     return data;
   }
 
-  const { data, status, hasNextPage, fetchNextPage, isFetchingNextPage, isFetching } = useInfiniteQuery(
+  const { data, status, hasNextPage, fetchNextPage } = useInfiniteQuery(
     ["beer"],
     async ({ pageParam = 1 }) => {
-      console.log(pageParam);
       return await getBeer(pageParam);
     },
     {
       getNextPageParam: (last, all) => {
-        const max = last.total_count / 30;
+        const max = last.length / 30;
         const next = all.length + 1;
-        return last;
+        return max ? next : undefined;
       }
     }
   );
-
-  // if (data !== undefined) {
-  //   data.pages.map((page, i) => {
-  //     page.map((beer) => {
-  //       // console.log(beer);
-  //     })
-  //   })
-  // }
-
-  const cli=()=>{
-    // inView ? setInView(false) : setInView(true)
-    // console.log(inView)
-    fetchNextPage();
-  }
 
   return (
     <div>
@@ -68,7 +50,7 @@ const ListPage = () => {
             </tr>
           </thead>
           <tbody>
-            {/* {status === 'loading' ? (
+            {status === 'loading' ? (
               <tr><td>loading...</td></tr>
             ) : (
               <>
@@ -80,11 +62,11 @@ const ListPage = () => {
                   </Fragment>
                 ))}
               </>
-            )} */}
+            )}
           </tbody>
         </table>
       </div>
-      <div ><button onClick={cli}>viewchg</button></div>
+      <div ref={ref}></div>
     </div>
   );
 }
