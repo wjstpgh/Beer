@@ -1,4 +1,5 @@
 import '../styles/globals.css'
+import '../styles/rc-slider.css'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import { QueryClient, QueryClientProvider } from 'react-query'
 

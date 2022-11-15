@@ -12,7 +12,7 @@ const Beer = ({ beer }) => {
 
   return (
     <>
-      <tr className="grid grid-cols-6">
+      <tr className="grid grid-cols-6 leading-8">
         <td
           className="col-span-1 text-orange-800 text-center"
           onClick={modalOpenHandler}
