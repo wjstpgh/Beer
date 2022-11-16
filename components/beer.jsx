@@ -1,18 +1,26 @@
 import { useState } from 'react';
 import Modal from 'react-modal';
 import BeerDetail from './beer-detail';
+import { useRecoilState } from 'recoil';
+import { beerWish } from '../pages/_app';
 
 const Beer = ({ beer }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [wish, setWish] = useRecoilState(beerWish);
   const { id, name, abv } = beer
 
   const modalOpenHandler = () => {
     setModalIsOpen(true);
   }
 
+  const addBeer = () => {
+    setWish(beer);
+    alert(`add '${name}' to wish list`);
+  }
+
   return (
     <>
-      <tr className="grid grid-cols-6">
+      <tr className="grid grid-cols-6 leading-8">
         <td
           className="col-span-1 text-orange-800 text-center"
           onClick={modalOpenHandler}
@@ -40,7 +48,7 @@ const Beer = ({ beer }) => {
         ))}
         <td
           className="col-span-1 hover:scale-125 text-center cursor-pointer"
-        // onClick={ }
+          onClick={addBeer}
         >
           &#43;
         </td>
