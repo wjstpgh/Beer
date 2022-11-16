@@ -1,3 +1,5 @@
+import React from "react";
+
 const BeerDetail = ({ beer }) => {
   const { image_url, name, tagline, first_brewed, description, abv } = beer;
 
