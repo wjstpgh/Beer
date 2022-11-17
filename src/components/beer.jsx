@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import BeerDetail from '@components/beerDetail';
-import { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { beerWish } from '@store/beerwish';
 import Modal from 'react-modal';

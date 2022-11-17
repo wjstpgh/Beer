@@ -1,5 +1,4 @@
-import React from 'react';
-import { useEffect, Fragment, useState } from 'react';
+import React, { useEffect, Fragment, useState } from 'react';
 import Beer from '@components/beer';
 import Navbar from '@components/navbar';
 import { useInfiniteQuery } from 'react-query';
@@ -38,9 +37,10 @@ const ListPage = () => {
     },
   );
 
-  const slideChangeHandler = (e) => {
-    setMinAbv(e[0]);
-    setMaxAbv(e[1]);
+  const slideChangeHandler = (slideRange) => {
+    const [min, max] = slideRange;
+    setMinAbv(min);
+    setMaxAbv(max);
     remove();
   };
 
