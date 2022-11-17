@@ -1,14 +1,7 @@
-import Navbar from "../components/navbar";
+import React from 'react';
 
-const Homepage = () => {
-  return (
-    <>
-      <Navbar />
-      <div className="container mx-auto px-20 py-8 backdrop-blur-sm bg-stone-50/30 rounded-xl">
-        지갑 연동 페이지
-      </div>
-    </>
-  );
-}
+const Root = () => {
+  return <>homepage redirecting...</>;
+};
 
-export default Homepage;
+export default Root;
