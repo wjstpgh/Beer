@@ -23,12 +23,12 @@ const Beer = ({ beer }) => {
     setModalIsOpen(true);
   };
 
-  // const addBeer = () => {
-  //   if (wishList.findIndex((listItem) => listItem.id === id) === -1) {
-  //     setWishList([...wishList, { id: id, name: name, image_url: image_url }]);
-  //     alert(`add '${name}' to wish list`);
-  //   }
-  // };
+  const addBeer = () => {
+    if (wishList.findIndex((listItem) => listItem.id === id) === -1) {
+      setWishList([...wishList, { id: id, name: name, image_url: image_url }]);
+      alert(`add '${name}' to wish list`);
+    }
+  };
 
   return (
     <>
