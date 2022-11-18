@@ -2,16 +2,38 @@ import React from 'react';
 import BeerWish from '@components/beerWish';
 import Navbar from '@components/navbar';
 import { useRecoilValue } from 'recoil';
-import { getBeerWish } from '@store/beerwish';
+import { useDrop } from 'react-dnd';
+import { getBeerWish, ItemTypes } from '../src/store/beerwish';
 
 const Wishpage = () => {
   const wishBeer = useRecoilValue(getBeerWish);
   console.log(wishBeer);
 
+  const [{ canDrop, isOver }, drop] = useDrop(() => ({
+    accept: ItemTypes.BEER,
+    drop: () => ({ name: 'dropbox' }),
+    collect: (monitor) => ({
+      isOver: monitor.isOver(),
+      canDrop: monitor.canDrop(),
+    }),
+  }));
+
+  const isDropActive = canDrop && isOver;
+
+  let backgroundColor = 'rgb(239, 211, 133)';
+  if (isDropActive) {
+    backgroundColor = 'rgba(255, 255, 255,.4)';
+  } else if (canDrop) {
+    backgroundColor = '#b45309';
+  }
+
   return (
-    <div>
+    <div style={{ backgroundColor }} className="rounded-md">
       <Navbar />
-      <div className="container mx-auto px-12 py-6 backdrop-blur-sm bg-stone-50/30 rounded-xl">
+      <div
+        ref={drop}
+        className="container mx-auto px-12 py-6 backdrop-blur-sm bg-stone-50/30 rounded-xl"
+      >
         <div className="grid grid-cols-4 gap-2">
           {wishBeer.map((beer) => (
             <BeerWish key={beer.id} beer={beer} />
