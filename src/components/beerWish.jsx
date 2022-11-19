@@ -29,7 +29,7 @@ const BeerWish = ({ beer }) => {
       className="p-1 inline-flex bg-orange-800 rounded-md text-orange-300 cursor-pointer"
     >
       <img className="h-24" src={image_url} alt="#" />
-      <p className="text-2xl">{name}</p>
+      <div className="text-2xl">{name}</div>
     </div>
   );
 };

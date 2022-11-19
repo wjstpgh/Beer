@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import BeerWish from '@components/beerWish';
 import Navbar from '@components/navbar';
 import { useRecoilValue } from 'recoil';
@@ -6,8 +6,12 @@ import { useDrop } from 'react-dnd';
 import { getBeerWish, ItemTypes } from '../src/store/beerwish';
 
 const Wishpage = () => {
+  const [wishList, setWishList] = useState([]);
   const wishBeer = useRecoilValue(getBeerWish);
-  console.log(wishBeer);
+
+  useEffect(() => {
+    setWishList(wishBeer)
+  }, [])
 
   const [{ canDrop, isOver }, drop] = useDrop(() => ({
     accept: ItemTypes.BEER,
@@ -35,7 +39,7 @@ const Wishpage = () => {
         className="container mx-auto px-12 py-6 backdrop-blur-sm bg-stone-50/30 rounded-xl"
       >
         <div className="grid grid-cols-4 gap-2">
-          {wishBeer.map((beer) => (
+          {wishList.map((beer) => (
             <BeerWish key={beer.id} beer={beer} />
           ))}
         </div>
