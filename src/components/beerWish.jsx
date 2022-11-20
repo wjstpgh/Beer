@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { useDrag } from 'react-dnd';
-import { ItemTypes } from '../store/beerwish';
+import { ItemTypes } from '@store/beerwish';
 
-const BeerWish = ({ beer }) => {
-  const { name, image_url } = beer;
+function BeerWish({ beer, getBeerIdtoDelete }) {
+  const { id, name, image_url } = beer;
 
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemTypes.BEER,
-    item: { name },
+    item: { id, name },
     end: (item, monitor) => {
       const dropResult = monitor.getDropResult();
       if (item && !dropResult) {
         alert(`${item.name}가 리스트에서 제거됩니다.`);
+        getBeerIdtoDelete(item.id);
       }
     },
     collect: (monitor) => ({
@@ -32,6 +33,6 @@ const BeerWish = ({ beer }) => {
       <div className="text-2xl">{name}</div>
     </div>
   );
-};
+}
 
-export default BeerWish;
+export default memo(BeerWish);

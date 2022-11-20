@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from '@components/navbar';
 
-const Homepage = () => {
+function Homepage() {
   return (
     <>
       <Navbar />
@@ -10,6 +10,6 @@ const Homepage = () => {
       </div>
     </>
   );
-};
+}
 
 export default Homepage;

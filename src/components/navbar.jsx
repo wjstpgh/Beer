@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-const Navbar = () => {
+function Navbar() {
   return (
     <div className="container mx-auto px-20 py-10 grid grid-cols-6 gap-4 text-3xl">
       <Link href="/_homepage" className="col-start-1 col-span-1">
@@ -21,6 +21,6 @@ const Navbar = () => {
       </Link>
     </div>
   );
-};
+}
 
 export default Navbar;
