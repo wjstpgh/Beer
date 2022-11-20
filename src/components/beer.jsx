@@ -4,7 +4,7 @@ import { useRecoilState } from 'recoil';
 import { beerWish } from '@store/beerwish';
 import Modal from 'react-modal';
 
-const Beer = ({ beer }) => {
+function Beer({ beer }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [wishList, setWishList] = useRecoilState(beerWish);
   const { id, name, abv, image_url } = beer;
@@ -62,6 +62,6 @@ const Beer = ({ beer }) => {
       </Modal>
     </>
   );
-};
+}
 
 export default Beer;

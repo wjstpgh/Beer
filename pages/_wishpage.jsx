@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import BeerWish from '@components/beerWish';
 import Navbar from '@components/navbar';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { useDrop } from 'react-dnd';
-import { getBeerWish, ItemTypes } from '../src/store/beerwish';
+import { beerWish, ItemTypes } from '@store/beerwish';
 
-const Wishpage = () => {
+function Wishpage() {
   const [wishList, setWishList] = useState([]);
-  const wishBeer = useRecoilValue(getBeerWish);
+  const [beerId, setBeerId] = useState(0);
+  const [wishBeer, setWishBeer] = useRecoilState(beerWish);
 
   useEffect(() => {
-    setWishList(wishBeer)
-  }, [])
+    setWishList(wishBeer);
+  }, [wishBeer]);
+
+  useEffect(() => {
+    deleteBeerById();
+  }, [beerId]);
 
   const [{ canDrop, isOver }, drop] = useDrop(() => ({
     accept: ItemTypes.BEER,
@@ -21,6 +26,14 @@ const Wishpage = () => {
       canDrop: monitor.canDrop(),
     }),
   }));
+
+  const getBeerIdtoDelete = (id) => {
+    setBeerId(id);
+  };
+
+  const deleteBeerById = () => {
+    setWishBeer(wishBeer.filter((beer) => beer.id !== beerId));
+  };
 
   const isDropActive = canDrop && isOver;
 
@@ -40,12 +53,16 @@ const Wishpage = () => {
       >
         <div className="grid grid-cols-4 gap-2">
           {wishList.map((beer) => (
-            <BeerWish key={beer.id} beer={beer} />
+            <BeerWish
+              key={beer.id}
+              beer={beer}
+              getBeerIdtoDelete={getBeerIdtoDelete}
+            />
           ))}
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default Wishpage;
