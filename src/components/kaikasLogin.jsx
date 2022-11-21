@@ -13,27 +13,15 @@ function KaikasLogin() {
     }
   };
 
-  const onClickKaikasLogout = () => {
-    //다음 이슈에서 구현예정
-    klaytn.selectedAddress = [];
-  };
-
   return (
     <div className="text-center">
       <button
-        className="bg-orange-600 hover:bg-orange-800 px-14 py-3 mb-4 rounded-2xl"
+        className="mb-4 px-14 py-3 bg-orange-600 rounded-2xl hover:bg-orange-800"
         type="button"
         onClick={onClickKaikasLoginPopup}
       >
         <Logo className="inline" />
         <p className="text-white">Connect to Kaikas</p>
-      </button>
-      <button
-        className="bg-orange-600 hover:bg-orange-800 px-14 py-3 rounded-2xl"
-        type="button"
-        onClick={onClickKaikasLogout}
-      >
-        <p className="text-white">Kaikas Disconnect</p>
       </button>
     </div>
   );

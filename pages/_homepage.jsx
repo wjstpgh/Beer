@@ -21,7 +21,7 @@ function Homepage() {
           <KaikasLogin />
         ) : (
           <a
-            className="text-orange-600 hover:text-orange-400 hover:underline decoration-current decoration-wavy hover:capitalize font-serif italic"
+            className="font-serif italic decoration-current decoration-wavy text-orange-600 hover:text-orange-400 hover:underline hover:capitalize"
             href="https://chrome.google.com/webstore/detail/kaikas/jblndlipeogpafnldhgmapagcccfchpi"
           >
             Download Kaikas Chrome Extension
@@ -29,7 +29,7 @@ function Homepage() {
         )}
         <br />
         <a
-          className="text-orange-600 hover:text-orange-400 hover:underline decoration-current decoration-wavy hover:capitalize font-serif italic"
+          className="font-serif italic decoration-current decoration-wavy text-orange-600 hover:text-orange-400 hover:underline hover:capitalize"
           href="https://ko.docs.klaytn.foundation/dapp/developer-tools/kaikas"
         >
           What is Kaikas?
