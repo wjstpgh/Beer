@@ -9,6 +9,10 @@ const { persistAtom } = recoilPersist({
   storage: sessionStorage,
 });
 
+export const ItemTypes = {
+  BEER: 'beer',
+};
+
 export const beerWish = atom({
   key: 'beerWish',
   default: [],

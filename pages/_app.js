@@ -2,6 +2,8 @@ import React from 'react';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { RecoilRoot } from 'recoil';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 import '@styles/globals_Style.css';
 import '@styles/rcslider_Style.css';
 
@@ -20,7 +22,9 @@ function MyApp({ Component, pageProps }) {
         <ReactQueryDevtools initialIsOpen={false} />
       ) : null}
       <RecoilRoot>
-        <Component {...pageProps} />
+        <DndProvider backend={HTML5Backend}>
+          <Component {...pageProps} />
+        </DndProvider>
       </RecoilRoot>
     </QueryClientProvider>
   );

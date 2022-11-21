@@ -1,6 +1,6 @@
 import React from 'react';
 
-const BeerDetail = ({ beer }) => {
+function BeerDetail({ beer }) {
   const { image_url, name, tagline, first_brewed, description, abv } = beer;
 
   return (
@@ -28,6 +28,6 @@ const BeerDetail = ({ beer }) => {
       <p>{abv}</p>
     </div>
   );
-};
+}
 
 export default BeerDetail;

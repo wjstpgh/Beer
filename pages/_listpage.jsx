@@ -5,7 +5,7 @@ import { useInfiniteQuery } from 'react-query';
 import { useInView } from 'react-intersection-observer';
 import Slider from 'rc-slider';
 
-const ListPage = () => {
+function ListPage() {
   const { ref, inView } = useInView({ threshold: 0.3 });
   const abvRange = { min: 0, max: 56 };
   const [minAbv, setMinAbv] = useState(abvRange.min);
@@ -91,6 +91,6 @@ const ListPage = () => {
       <div ref={ref}></div>
     </div>
   );
-};
+}
 
 export default ListPage;
