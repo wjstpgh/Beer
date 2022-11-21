@@ -27,7 +27,7 @@ function BeerWish({ beer, getBeerIdtoDelete }) {
     <div
       ref={drag}
       style={{ opacity }}
-      className="p-1 inline-flex bg-orange-800 rounded-md text-orange-300 cursor-pointer"
+      className="inline-flex p-1 bg-orange-800 text-orange-300 rounded-md cursor-pointer"
     >
       <img className="h-24" src={image_url} alt="#" />
       <div className="text-2xl">{name}</div>
