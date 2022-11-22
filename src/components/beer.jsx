@@ -27,9 +27,13 @@ function Beer({ beer }) {
   const addBeer = () => {
     if (klaytn.selectedAddress === undefined) {
       alert('kaikas를 먼저 연결해주세요.');
-    } else if (wishList.findIndex((listItem) => listItem.id === id) === -1) {
+      return;
+    }
+    if (wishList.findIndex((listItem) => listItem.id === id) === -1) {
       setWishList([...wishList, { id: id, name: name, image_url: image_url }]);
       alert(`add '${name}' to wish list`);
+    } else {
+      alert('이미 추가된 상품입니다.');
     }
   };
 
