@@ -39,7 +39,7 @@ function Beer({ beer }) {
       <tr className="grid grid-cols-6 leading-8">
         <td className="col-span-1 text-orange-800 text-center">{id}</td>
         <td
-          className="col-span-3 text-orange-600 hover:text-orange-400 hover:underline decoration-current decoration-wavy lowercase hover:capitalize font-serif italic cursor-pointer"
+          className="col-span-3 font-serif italic lowercase text-orange-600  decoration-current decoration-wavy hover:text-orange-400 hover:underline hover:capitalize cursor-pointer"
           onClick={modalOpenHandler}
         >
           {name}
@@ -48,7 +48,7 @@ function Beer({ beer }) {
           <span className={abvTextColor(abv)}>{abv}</span>
         </td>
         <td
-          className="col-span-1 hover:scale-125 text-center cursor-pointer"
+          className="col-span-1 text-center hover:scale-125 cursor-pointer"
           onClick={addBeer}
         >
           &#43;
