@@ -1,13 +1,16 @@
 /* global klaytn */
 import React from 'react';
-//절대경로로 svg파일 import시 err 발생중
-import { ReactComponent as Logo } from '../../public/kaikaslogo.svg';
 
 function KaikasLogin() {
   const onClickKaikasLoginPopup = async () => {
     if (klaytn.isKaikas) {
-      const account = await klaytn.enable();
-      console.log(account); //지갑 address get test,삭제예정
+      if (klaytn.selectedAddress === undefined) {
+        const account = await klaytn.enable();
+        alert(`Address ${account} connect`);
+      } else {
+        alert('Already connect');
+        console.log(klaytn);
+      }
     } else {
       alert('no kaikas');
     }
@@ -20,7 +23,7 @@ function KaikasLogin() {
         type="button"
         onClick={onClickKaikasLoginPopup}
       >
-        <Logo className="inline" />
+        <img className="inline w-7" src="./kaikas.png" />
         <p className="text-white">Connect to Kaikas</p>
       </button>
     </div>
