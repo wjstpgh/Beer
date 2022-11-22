@@ -25,7 +25,6 @@ function Beer({ beer }) {
   };
 
   const addBeer = () => {
-    console.log(klaytn.selectedAddress);
     if (klaytn.selectedAddress === undefined) {
       alert('kaikas를 먼저 연결해주세요.');
     } else if (wishList.findIndex((listItem) => listItem.id === id) === -1) {
