@@ -1,5 +1,5 @@
 /* global klaytn */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BeerDetail from '@components/beerDetail';
 import Alert from '@components/alert';
 import { useRecoilState } from 'recoil';
@@ -12,6 +12,12 @@ function Beer({ beer }) {
   const [alertMsg, setAlertMsg] = useState('');
   const [wishList, setWishList] = useRecoilState(beerWish);
   const { id, name, abv, image_url } = beer;
+
+  useEffect(() => {
+    modalIsOpen
+      ? (document.body.style.overflow = 'hidden')
+      : (document.body.style.overflow = 'unset');
+  }, [modalIsOpen]);
 
   const abvTextColor = (abv) => {
     if (abv < 7) {
