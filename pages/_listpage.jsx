@@ -3,13 +3,23 @@ import Beer from '@components/beer';
 import Navbar from '@components/navbar';
 import { useInfiniteQuery } from 'react-query';
 import { useInView } from 'react-intersection-observer';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
 import Slider from 'rc-slider';
+
+export const getStaticProps = async ({ locale }) => ({
+  props: {
+    ...(await serverSideTranslations(locale, ['common'])),
+  },
+});
 
 function ListPage() {
   const { ref, inView } = useInView({ threshold: 0.3 });
   const abvRange = { min: 0, max: 56 };
   const [minAbv, setMinAbv] = useState(abvRange.min);
   const [maxAbv, setMaxAbv] = useState(abvRange.max);
+
+  const { t } = useTranslation('common');
 
   useEffect(() => {
     if (inView && hasNextPage) {
@@ -58,15 +68,15 @@ function ListPage() {
           allowCross={false}
         />
         <p className="text-center mb-9 text-orange-500">
-          {`${minAbv} < abv < ${maxAbv}`}
+          {`${minAbv} < ${t('abv')} < ${maxAbv}`}
         </p>
         <table className="container table-auto">
           <thead>
             <tr className="grid grid-cols-6">
               <th className="col-span-1">No.</th>
-              <th className="col-span-3">Beer name</th>
-              <th className="col-span-1">abv</th>
-              <th className="col-span-1">add to cart</th>
+              <th className="col-span-3">{t('Beer name')}</th>
+              <th className="col-span-1">{t('abv')}</th>
+              <th className="col-span-1">{t('add to cart')}</th>
             </tr>
           </thead>
           <tbody>

@@ -1,12 +1,15 @@
 /* global klaytn */
 import React, { useState } from 'react';
 import BeerDetail from '@components/beerDetail';
+import Alert from '@components/alert';
 import { useRecoilState } from 'recoil';
 import { beerWish } from '@store/beerwish';
 import Modal from 'react-modal';
 
 function Beer({ beer }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [alertIsOpen, setAlertIsOpen] = useState(false);
+  const [alertMsg, setAlertMsg] = useState('');
   const [wishList, setWishList] = useRecoilState(beerWish);
   const { id, name, abv, image_url } = beer;
 
@@ -26,14 +29,17 @@ function Beer({ beer }) {
 
   const addBeer = () => {
     if (klaytn.selectedAddress === undefined) {
-      alert('kaikas를 먼저 연결해주세요.');
+      setAlertMsg('connect Kaikas first');
+      setAlertIsOpen(true);
       return;
     }
     if (wishList.findIndex((listItem) => listItem.id === id) === -1) {
       setWishList([...wishList, { id: id, name: name, image_url: image_url }]);
-      alert(`add '${name}' to wish list`);
+      setAlertMsg('add to wish list');
+      setAlertIsOpen(true);
     } else {
-      alert('이미 추가된 상품입니다.');
+      setAlertMsg('already in list');
+      setAlertIsOpen(true);
     }
   };
 
@@ -67,6 +73,11 @@ function Beer({ beer }) {
       >
         <BeerDetail key={beer.id} beer={beer} />
       </Modal>
+      <Alert
+        alertIsOpen={alertIsOpen}
+        setAlertIsOpen={setAlertIsOpen}
+        alertMsg={alertMsg}
+      />
     </>
   );
 }
