@@ -5,11 +5,16 @@ import { useTranslation } from 'react-i18next';
 function Alert({ alertIsOpen, setAlertIsOpen, alertMsg, subject = '' }) {
   const { t } = useTranslation('common');
 
+  if (alertIsOpen) {
+    document.body.style.overflow = 'hidden';
+  }
+
   return (
     <Modal
       className="w-auto"
       isOpen={alertIsOpen}
       onRequestClose={() => {
+        document.body.style.overflow = 'unset';
         setAlertIsOpen(false);
       }}
       ariaHideApp={false}
