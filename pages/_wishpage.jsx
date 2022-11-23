@@ -3,7 +3,14 @@ import BeerWish from '@components/beerWish';
 import Navbar from '@components/navbar';
 import { useRecoilState } from 'recoil';
 import { useDrop } from 'react-dnd';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { beerWish, ItemTypes } from '@store/beerwish';
+
+export const getStaticProps = async ({ locale }) => ({
+  props: {
+    ...(await serverSideTranslations(locale, ['common'])),
+  },
+});
 
 function Wishpage() {
   const [wishList, setWishList] = useState([]);

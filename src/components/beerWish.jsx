@@ -1,9 +1,12 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
+import Alert from '@components/alert';
 import { useDrag } from 'react-dnd';
 import { ItemTypes } from '@store/beerwish';
 
 function BeerWish({ beer, getBeerIdtoDelete }) {
   const { id, name, image_url } = beer;
+  const [alertIsOpen, setAlertIsOpen] = useState(false);
+  const [alertMsg, setAlertMsg] = useState('');
 
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemTypes.BEER,
@@ -11,8 +14,11 @@ function BeerWish({ beer, getBeerIdtoDelete }) {
     end: (item, monitor) => {
       const dropResult = monitor.getDropResult();
       if (item && !dropResult) {
-        alert(`${item.name}가 리스트에서 제거됩니다.`);
-        getBeerIdtoDelete(item.id);
+        setAlertMsg('is removed from the list');
+        setAlertIsOpen(true);
+        setTimeout(() => {
+          getBeerIdtoDelete(item.id);
+        }, 1000);
       }
     },
     collect: (monitor) => ({
@@ -31,6 +37,12 @@ function BeerWish({ beer, getBeerIdtoDelete }) {
     >
       <img className="h-24" src={image_url} alt="#" />
       <div className="text-2xl">{name}</div>
+      <Alert
+        alertIsOpen={alertIsOpen}
+        setAlertIsOpen={setAlertIsOpen}
+        alertMsg={alertMsg}
+        subject={name}
+      />
     </div>
   );
 }
