@@ -34,10 +34,16 @@ function Beer({ beer }) {
   };
 
   const addBeer = () => {
-    if (klaytn.selectedAddress === undefined) {
-      setAlertMsg('connect Kaikas first');
-      setAlertIsOpen(true);
-      return;
+    if (typeof window !== 'undefined') {
+      if (typeof window.klaytn === 'undefined') {
+        setAlertMsg('download Kaikas first');
+        setAlertIsOpen(true);
+        return;
+      } else if (klaytn.selectedAddress === undefined) {
+        setAlertMsg('connect Kaikas first');
+        setAlertIsOpen(true);
+        return;
+      }
     }
     if (wishList.findIndex((listItem) => listItem.id === id) === -1) {
       setWishList([...wishList, { id: id, name: name, image_url: image_url }]);
