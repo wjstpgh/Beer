@@ -20,17 +20,17 @@ function Navbar() {
 
   return (
     <div className="container mx-auto px-20 py-10 text-center grid grid-cols-12 gap-4 text-3xl break-keep">
-      <Link href="/_homepage" className="col-start-1 col-span-2">
+      <Link href="/homepage" className="col-start-1 col-span-2">
         <span className="px-2 py-1 font-serif italic text-orange-100 bg-gradient-to-r from-amber-700 via-amber-300 to-amber-500 hover:bg-gradient-to-r hover:from-amber-300 hover:via-amber-600 hover:to-amber-200 rounded-xl">
           {t('Home')}
         </span>
       </Link>
-      <Link href="/_listpage" className="col-start-7 col-span-2">
+      <Link href="/listpage" className="col-start-7 col-span-2">
         <span className="px-2 py-1 font-serif italic text-orange-100 bg-gradient-to-r from-amber-700 via-amber-300 to-amber-500 hover:bg-gradient-to-r hover:from-amber-300 hover:via-amber-600 hover:to-amber-200 rounded-xl">
           {t('List')}
         </span>
       </Link>
-      <Link href="/_wishpage" className="col-start-9 col-span-2">
+      <Link href="/wishpage" className="col-start-9 col-span-2">
         <span className="px-2 py-1 font-serif italic text-orange-100 bg-gradient-to-r from-amber-700 via-amber-300 to-amber-500 hover:bg-gradient-to-r hover:from-amber-300 hover:via-amber-600 hover:to-amber-200 rounded-xl">
           {t('Wish')}
         </span>

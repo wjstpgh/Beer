@@ -7,17 +7,17 @@ const nextConfig = {
     return [
       {
         source: '/',
-        destination: '/_homepage',
+        destination: '/homepage',
         permanent: false,
       },
       {
         source: '/ko',
-        destination: '/ko/_homepage',
+        destination: '/ko/homepage',
         permanent: false,
       },
       {
         source: '/en',
-        destination: '/en/_homepage',
+        destination: '/en/homepage',
         permanent: false,
       },
     ];
